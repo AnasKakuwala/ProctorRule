@@ -6,4 +6,3 @@ class LoginScreen extends StatelessWidget {
     return Scaffold();
   }
 }
-
