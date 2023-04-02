@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "371883864435",
+    "project_id": "proctorrule-16cff",
+    "storage_bucket": "proctorrule-16cff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:371883864435:android:a90b678c7b89f568205506",
+        "android_client_info": {
+          "package_name": "com.example.proctor_rule"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "371883864435-9esq2pp7r5vcdh7i3sjqf5iqoehi39vk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgMnV5XCtfS7wKImLU0TyIpQUQebKaB5Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "371883864435-9esq2pp7r5vcdh7i3sjqf5iqoehi39vk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

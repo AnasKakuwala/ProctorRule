@@ -1,4 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+
+import 'mainScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -8,6 +12,25 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
+  static Future<User?> loginUsingEmailPassword({required String email, required String password,required BuildContext context}) async{
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user;
+    try{
+      UserCredential userCredential = await auth.signInWithEmailAndPassword(
+          email: email,
+          password: password
+      );
+
+    return user;
+    } on FirebaseAuthException catch(e){
+      if(e.code == "user-not-found"){
+        print("User no found!!");
+      }
+    }
+  }
   var _isVisible = false;
   @override
   Widget build(BuildContext context) {
@@ -46,6 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
                            padding: const EdgeInsets.only(left: 15),
                            child: Center(
                              child: TextField(
+                               controller: emailController,
                                decoration: InputDecoration(
                                  border: InputBorder.none,
                                  hintText: "abc@gmail.com",
@@ -59,20 +83,21 @@ class _LoginScreenState extends State<LoginScreen> {
                        ),
                        Container(
                          height: constraints.maxHeight * 0.12,
-                         decoration: BoxDecoration(
+                         decoration:  BoxDecoration(
                             color: Color(0xffB4B4B4).withOpacity(0.4),
                             borderRadius: BorderRadius.circular(60)
                           ),
                          child: Padding(
                            padding: const EdgeInsets.only(left: 15),
-                           child: Center(
-                             child: TextField(
+                           child:  Center(
+                             child:  TextField(
+                               controller: passwordController,
                                obscureText: _isVisible?false:true,
-                               decoration: InputDecoration(
-                                 suffixIcon: IconButton(
-                                   onPressed: ()  {
+                               decoration:  InputDecoration(
+                                 suffixIcon:  IconButton(
+                                   onPressed: () {
                                      setState(() {
-                                        _isVisible = !_isVisible;  
+                                        _isVisible = !_isVisible;
                                      });
                                    },
                                    icon: Icon(_isVisible?Icons.visibility:  Icons.visibility_off,color: Colors.grey,),
@@ -89,7 +114,13 @@ class _LoginScreenState extends State<LoginScreen> {
                          height: constraints.maxHeight * 0.12,
                          margin: EdgeInsets.only(top: constraints.maxHeight * 0.05),
                          child: ElevatedButton(
-                           onPressed: () {},
+                           onPressed: () async {
+                             User? user = await loginUsingEmailPassword(email: emailController.text, password: passwordController.text, context: context);
+                             print(user);
+                             if(user != null){
+                               Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MainScreen()));
+                             }
+                           },
                            child: Text('Login',
                              style: TextStyle(
                                  fontWeight: FontWeight.bold,
