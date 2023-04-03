@@ -5,8 +5,11 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Yuppie you are authorized..."),
+    return Scaffold(
+      appBar: AppBar(title: Text('Home Screen'),
+      ),
+      body: Center(child: Text("Welcome To ProctorRule"),
+      ),
     );
   }
 }
