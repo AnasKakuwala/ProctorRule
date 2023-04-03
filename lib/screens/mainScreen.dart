@@ -5,8 +5,10 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Yuppie you are authorized..."),
+    return FutureBuilder(
+      builder: const Center(
+        child: Text("Yuppie you are authorized..."),
+      ),
     );
   }
 }

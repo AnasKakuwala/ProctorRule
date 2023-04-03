@@ -13,25 +13,26 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
+  //****************************************Creating controllers****************************************
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
+
+  //****************************************Creating login function****************************************
   static Future<User?> loginUsingEmailPassword({required String email, required String password,required BuildContext context}) async{
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
     try{
-      UserCredential userCredential = await auth.signInWithEmailAndPassword(
-          email: email,
-          password: password
-      );
+      UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
       user = userCredential.user;
-
-    return user;
+      return user;
     } on FirebaseAuthException catch(e){
       if(e.code == "user-not-found"){
         print("User no found!!");
       }
     }
   }
+
+
   var _isVisible = false;
   @override
   Widget build(BuildContext context) {
@@ -88,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             color: Color(0xffB4B4B4).withOpacity(0.4),
                             borderRadius: BorderRadius.circular(60)
                           ),
-                         child: Padding(
+                         child: Padding (
                            padding: const EdgeInsets.only(left: 15),
                            child:  Center(
                              child:  TextField(
