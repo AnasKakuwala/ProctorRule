@@ -23,6 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
           email: email,
           password: password
       );
+      user = userCredential.user;
 
     return user;
     } on FirebaseAuthException catch(e){
