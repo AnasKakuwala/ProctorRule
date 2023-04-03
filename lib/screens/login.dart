@@ -117,7 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                            onPressed: () async {
                              User? user = await loginUsingEmailPassword(email: emailController.text, password: passwordController.text, context: context);
                              print(user);
-                             if(user != null){
+                             if(user == null){
                                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MainScreen()));
                              }
                            },
