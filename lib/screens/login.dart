@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-import 'mainScreen.dart';
+import 'main_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -13,25 +13,26 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
+  //****************************************Creating controllers****************************************
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
+
+  //****************************************Creating login function****************************************
   static Future<User?> loginUsingEmailPassword({required String email, required String password,required BuildContext context}) async{
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
     try{
-      UserCredential userCredential = await auth.signInWithEmailAndPassword(
-          email: email,
-          password: password
-      );
+      UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
       user = userCredential.user;
-
-    return user;
+      return user;
     } on FirebaseAuthException catch(e){
       if(e.code == "user-not-found"){
         print("User no found!!");
       }
     }
   }
+
+
   var _isVisible = false;
   @override
   Widget build(BuildContext context) {
@@ -42,9 +43,11 @@ class _LoginScreenState extends State<LoginScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              SizedBox(height: 25,),
               Container(height: deviceHeight * 0.30,
                 child: FittedBox(
                   child: CircleAvatar(
+                    backgroundColor: Colors.black12,
                     backgroundImage: AssetImage('assets/images/professor.png'),
                     radius: 120,
                   ),
@@ -80,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                          ),
                        ),
                        SizedBox(
-                         height: constraints.maxHeight * 0.02,
+                         height: constraints.maxHeight * 0.01,
                        ),
                        Container(
                          height: constraints.maxHeight * 0.12,
@@ -88,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             color: Color(0xffB4B4B4).withOpacity(0.4),
                             borderRadius: BorderRadius.circular(60)
                           ),
-                         child: Padding(
+                         child: Padding (
                            padding: const EdgeInsets.only(left: 15),
                            child:  Center(
                              child:  TextField(
@@ -118,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                            onPressed: () async {
                              User? user = await loginUsingEmailPassword(email: emailController.text, password: passwordController.text, context: context);
                              print(user);
-                             if(user == null){
+                             if(user != null){
                                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MainScreen()));
                              }
                            },
@@ -128,13 +131,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                  fontSize: 22),
                            ),
                            style: ElevatedButton.styleFrom(
-                             primary: Color(0xffF80849),
+                             primary: Color(0xff4e6491),
                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28))
                            ),
                          ),
                        ),
                        SizedBox(height: constraints.maxHeight * 0.02,)
-                     ], 
+                     ],
                     );
                   },
                 ),

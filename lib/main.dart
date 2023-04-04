@@ -56,6 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
         future: _initializeFirebase(),
         builder: (context, snapshot) {
       if(snapshot.connectionState == ConnectionState.done){
+        print("Connection succesful");
         return LoginScreen();
       }
       return Center(

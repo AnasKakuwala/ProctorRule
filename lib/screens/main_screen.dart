@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import '../Widgets/app_drawer.dart';
+
 
 class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -6,9 +9,9 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Home Screen'),
-      ),
-      body: Center(child: Text("Welcome To ProctorRule"),
+      drawer: AppDrawer(),
+      appBar: AppBar(
+        title: Text("ProctorRule"),
       ),
     );
   }
