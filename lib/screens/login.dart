@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-import 'mainScreen.dart';
+import 'main_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -43,9 +43,11 @@ class _LoginScreenState extends State<LoginScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              SizedBox(height: 25,),
               Container(height: deviceHeight * 0.30,
                 child: FittedBox(
                   child: CircleAvatar(
+                    backgroundColor: Colors.black12,
                     backgroundImage: AssetImage('assets/images/professor.png'),
                     radius: 120,
                   ),
@@ -81,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                          ),
                        ),
                        SizedBox(
-                         height: constraints.maxHeight * 0.02,
+                         height: constraints.maxHeight * 0.01,
                        ),
                        Container(
                          height: constraints.maxHeight * 0.12,
@@ -129,13 +131,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                  fontSize: 22),
                            ),
                            style: ElevatedButton.styleFrom(
-                             primary: Color(0xffF80849),
+                             primary: Color(0xff4e6491),
                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28))
                            ),
                          ),
                        ),
                        SizedBox(height: constraints.maxHeight * 0.02,)
-                     ], 
+                     ],
                     );
                   },
                 ),
