@@ -136,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
                            ),
                          ),
                        ),
-                       SizedBox(height: constraints.maxHeight * 0.02,)
+                       SizedBox(height: constraints.maxHeight * 0.02)
                      ],
                     );
                   },
