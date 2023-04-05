@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:proctor_rule/Widgets/app_drawer.dart';
+import 'package:proctor_rule/Widgets/main_body.dart';
 import '../providers/InstitueModel.dart';
 
 class InstituteSelection extends StatefulWidget {
@@ -28,11 +30,15 @@ class _InstituteSelectionState extends State<InstituteSelection> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
         title: Text("Institute Selection"),
         centerTitle: true,
         backgroundColor: Colors.grey[700],
+        leading: BackButton(
+          onPressed:() {
+          },
+        ),
       ),
+      drawer: AppDrawer(),  
       body: SafeArea(
         child: Container(
           child: Column(
