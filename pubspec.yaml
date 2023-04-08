@@ -39,6 +39,16 @@ dependencies:
   firebase_core: ^2.9.0
   firebase_auth: ^4.4.0
 
+
+  #Firebase storage
+  firebase_storage: ^11.1.0
+
+  #pick any file from device
+  file_picker: ^5.2.7
+
+  #File view
+  flutter_file_view: ^2.2.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
