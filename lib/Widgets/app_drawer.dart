@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // import 'package:proctor_rule/screens/login.dart';
+import '../screens/login.dart';
 
 class AppDrawer extends StatelessWidget {
-  const AppDrawer({Key? key}) : super(key: key);
+  // const AppDrawer({Key? key}) : super(key: key);
+  final FirebaseAuth _auth=FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +13,8 @@ class AppDrawer extends StatelessWidget {
       child: Column(
         children: [
           AppBar(
-            title: const Text("Drawer"),
+            backgroundColor: Colors.grey[700],
+            title: const Text("ProctorRule"),
           ),
           const Divider(
           ),
@@ -75,7 +79,9 @@ class AppDrawer extends StatelessWidget {
               Icons.logout,
             ),
             title: Text("Logout"),
-            onTap: () => {}
+            onTap: () => {
+                _auth.signOut()
+            }
           )
         ],
       ),
