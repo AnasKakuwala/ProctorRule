@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-=======
+// <<<<<<< HEAD
+// =======
 import 'package:proctor_rule/screens/instituteSelection.dart';
->>>>>>> Anas/ESE
+
+import '../screens/mse.dart';
+// >>>>>>> Anas/ESE
 
 class MainBody extends StatefulWidget {
   const MainBody({Key? key}) : super(key: key);
@@ -25,12 +27,12 @@ class _MainBodyState extends State<MainBody> {
         print("Button add");
         if(checkClick){
           buttons.add(
-<<<<<<< HEAD
-            ElevatedButton(child: Text("ESE"),onPressed: () => {},),
-          );
-          buttons.add(
-            ElevatedButton(child: Text("MSE"),onPressed: () => {},),
-=======
+// <<<<<<< HEAD
+//             ElevatedButton(child: Text("ESE"),onPressed: () => {},),
+//           );
+//           buttons.add(
+//             ElevatedButton(child: Text("MSE"),onPressed: () => {},),
+// =======
             ElevatedButton(
               style: ElevatedButton.styleFrom(
               primary: Colors.grey[700],
@@ -40,12 +42,14 @@ class _MainBodyState extends State<MainBody> {
             ),
           );
           buttons.add(
-            ElevatedButton(child: Text("MSE"),onPressed: () => {},
+            ElevatedButton(child: Text("MSE"),onPressed: () => {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> MSE()))
+            },
               style: ElevatedButton.styleFrom(
                 primary: Colors.grey[700],
               ),),
 
->>>>>>> Anas/ESE
+// >>>>>>> Anas/ESE
           );
         }
       }

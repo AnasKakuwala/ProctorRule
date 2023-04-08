@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:proctor_rule/Widgets/main_body.dart';
 import '../Widgets/app_drawer.dart';
 
 
@@ -13,6 +14,7 @@ class MainScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("ProctorRule"),
       ),
+      body: MainBody(),
     );
   }
 }
