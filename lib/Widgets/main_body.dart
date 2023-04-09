@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-// <<<<<<< HEAD
-// =======
-import 'package:proctor_rule/screens/instituteSelection.dart';
-
+import 'package:proctor_rule/screens/institute_selection.dart';
 import '../screens/mse.dart';
-// >>>>>>> Anas/ESE
 
 class MainBody extends StatefulWidget {
   const MainBody({Key? key}) : super(key: key);
@@ -21,40 +17,39 @@ class _MainBodyState extends State<MainBody> {
   void change(){
     setState(() {
       checkClick = !checkClick;
-      print(buttons.length);
+      // print(buttons.length);
       if(buttons.length < 2){
         textMsg = "Select the exam";
-        print("Button add");
+        // print("Button add");
         if(checkClick){
           buttons.add(
-// <<<<<<< HEAD
-//             ElevatedButton(child: Text("ESE"),onPressed: () => {},),
-//           );
-//           buttons.add(
-//             ElevatedButton(child: Text("MSE"),onPressed: () => {},),
-// =======
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-              primary: Colors.grey[700],
-            ),child: Text("ESE"),onPressed: () {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> InstituteSelection()));
-            },
+              backgroundColor: Colors.grey[700],
+              ),
+              child: const Text("ESE"),
+              onPressed: () {
+                // Navigator.of(context).pushReplacement();
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const InstituteSelection()));
+              },
             ),
           );
           buttons.add(
-            ElevatedButton(child: Text("MSE"),onPressed: () => {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> MSE()))
-            },
+            ElevatedButton(
+              onPressed: () => {
+                // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> const MSE())),
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const MSE()))
+              },
               style: ElevatedButton.styleFrom(
-                primary: Colors.grey[700],
-              ),),
-
-// >>>>>>> Anas/ESE
+                backgroundColor: Colors.grey[700],
+              ),
+              child: const Text("MSE"),
+            ),
           );
         }
       }
       else{
-        print("Button removed");
+        // print("Button removed");
         textMsg = "";
         buttons.clear();
       }
@@ -66,29 +61,29 @@ class _MainBodyState extends State<MainBody> {
       children: [
         Container(
           height: 120,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               image: DecorationImage(image: AssetImage('assets/images/classroom.jpg'),fit: BoxFit.fill)
           ),
         ),
-        SizedBox(height: 10,),
+        const SizedBox(height: 10,),
         ListTile(
-          shape: Border(
+          shape: const Border(
             top: BorderSide(color: Colors.blue),
             left: BorderSide(color: Colors.blue),
             bottom: BorderSide(color: Colors.blue),
             right: BorderSide(color: Colors.blue),
           ),
-          leading: Icon(Icons.schedule),
-          title: Text("Schedule exam"),
+          leading: const Icon(Icons.schedule),
+          title: const Text("Schedule exam"),
           onTap: () => {
             change(),
           },
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Text(textMsg),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Column(

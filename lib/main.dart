@@ -5,9 +5,9 @@ import 'screens/login.dart';
 void main() {
   runApp(const MyApp());
 }
+
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
-
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -16,9 +16,12 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.grey,
+      ),
       debugShowCheckedModeBanner: false,
       title: 'ProctorRule',
-      home: HomeScreen(),
+      home: const HomeScreen(),
     );
   }
 }
@@ -46,20 +49,21 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  @override
+
   Future<FirebaseApp> _initializeFirebase() async {
     FirebaseApp firebaseApp = await Firebase.initializeApp();
     return firebaseApp;
   }
+  @override
   Widget build(BuildContext context) {
     return FutureBuilder(
         future: _initializeFirebase(),
         builder: (context, snapshot) {
       if(snapshot.connectionState == ConnectionState.done){
-        print("Connection succesful");
-        return LoginScreen();
+        // print("Connection successful");
+        return const LoginScreen();
       }
-      return Center(
+      return const Center(
         child: CircularProgressIndicator(),
       );
     });

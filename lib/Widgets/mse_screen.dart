@@ -50,11 +50,13 @@ class _MseWidState extends State<MseWid> {
           SizedBox(
             height: 30,
           ),
-          Text("Select institute",style: TextStyle(
+          Text("Select institute",
+            style: TextStyle(
             fontSize: 40.0,
             fontWeight: FontWeight.bold,
             fontStyle: FontStyle.italic
-          ),),
+            ),
+          ),
           Center(
             child: Padding(
               padding: const EdgeInsets.all(16.0),

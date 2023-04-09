@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // import 'package:proctor_rule/screens/login.dart';
-import '../screens/login.dart';
+// import '../screens/login.dart';
 
 class AppDrawer extends StatelessWidget {
-  // const AppDrawer({Key? key}) : super(key: key);
-  final FirebaseAuth _auth=FirebaseAuth.instance;
+  AppDrawer({Key? key}) : super(key: key);
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -13,72 +13,77 @@ class AppDrawer extends StatelessWidget {
       child: Column(
         children: [
           AppBar(
+            leading: BackButton(
+              onPressed: () => {
+                Navigator.pop(context),
+              },
+            ),
             backgroundColor: Colors.grey[700],
             title: const Text("ProctorRule"),
           ),
           const Divider(
           ),
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.edit,
             ),
-            title: Text("Faculties"),
+            title: const  Text("Faculties"),
             onTap: () => {}
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.edit,
             ),
-            title: Text("Classrooms"),
+            title: const Text("Classrooms"),
             onTap: () => {}
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.edit,
             ),
-            title: Text("Schedule"),
+            title: const Text("Schedule"),
             onTap: () => {}
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.edit,
             ),
-            title: Text("Institutes"),
+            title: const Text("Institutes"),
             onTap: () => {}
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.edit,
             ),
-            title: Text("Subjects"),
+            title: const Text("Subjects"),
             onTap: () => {}
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.edit,
             ),
-            title: Text("Branches"),
+            title: const Text("Branches"),
             onTap: () => {}
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.edit,
             ),
-            title: Text("Duties"),
+            title: const Text("Duties"),
             onTap: () => {}
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.logout,
             ),
-            title: Text("Logout"),
+            title: const Text("Logout"),
             onTap: () => {
                 _auth.signOut()
             }

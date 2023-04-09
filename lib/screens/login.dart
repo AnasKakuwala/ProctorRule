@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-import 'main_screen.dart';
+import '../screens/main_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -27,9 +27,10 @@ class _LoginScreenState extends State<LoginScreen> {
       return user;
     } on FirebaseAuthException catch(e){
       if(e.code == "user-not-found"){
-        print("User no found!!");
+        // print("User no found!!");
       }
     }
+    return null;
   }
 
 
@@ -37,15 +38,15 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final deviceHeight = MediaQuery.of(context).size.height;
-    final deviceWidth = MediaQuery.of(context).size.width;
+    // final deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: 25,),
-              Container(height: deviceHeight * 0.30,
-                child: FittedBox(
+              const SizedBox(height: 25,),
+              SizedBox(height: deviceHeight * 0.30,
+                child: const FittedBox(
                   child: CircleAvatar(
                     backgroundColor: Colors.black12,
                     backgroundImage: AssetImage('assets/images/professor.png'),
@@ -56,25 +57,25 @@ class _LoginScreenState extends State<LoginScreen> {
               Container(
                 height: deviceHeight * 0.65,
                 width: double.infinity,
-                margin: EdgeInsets.symmetric(horizontal: 20),
+                margin: const EdgeInsets.symmetric(horizontal: 20),
                 child: LayoutBuilder(
                   builder: (ctx,constraints) {
                     return Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                      children: [
-                       Text('Login',style: TextStyle(fontSize: 36,fontWeight: FontWeight.bold),),
+                       const Text('Login',style: TextStyle(fontSize: 36,fontWeight: FontWeight.bold),),
                        SizedBox(height: constraints.maxHeight * 0.08,),
                        Container(
                          height: constraints.maxHeight * 0.12,
                          decoration: BoxDecoration(
-                             color: Color(0xffB4B4B4).withOpacity(0.4),
+                             color: const Color(0xffB4B4B4).withOpacity(0.4),
                              borderRadius: BorderRadius.circular(60)),
                          child: Padding(
                            padding: const EdgeInsets.only(left: 15),
                            child: Center(
                              child: TextField(
                                controller: emailController,
-                               decoration: InputDecoration(
+                               decoration: const InputDecoration(
                                  border: InputBorder.none,
                                  hintText: "abc@gmail.com",
                                ),
@@ -88,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                        Container(
                          height: constraints.maxHeight * 0.12,
                          decoration:  BoxDecoration(
-                            color: Color(0xffB4B4B4).withOpacity(0.4),
+                            color: const Color(0xffB4B4B4).withOpacity(0.4),
                             borderRadius: BorderRadius.circular(60)
                           ),
                          child: Padding (
@@ -120,19 +121,19 @@ class _LoginScreenState extends State<LoginScreen> {
                          child: ElevatedButton(
                            onPressed: () async {
                              User? user = await loginUsingEmailPassword(email: emailController.text, password: passwordController.text, context: context);
-                             print(user);
+                             // print(user);
                              if(user != null){
-                               Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MainScreen()));
+                               Navigator.push(context,MaterialPageRoute(builder: (context) => const MainScreen()));
                              }
                            },
-                           child: Text('Login',
+                           style: ElevatedButton.styleFrom(
+
+                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28))
+                           ),
+                           child: const Text('Login',
                              style: TextStyle(
                                  fontWeight: FontWeight.bold,
                                  fontSize: 22),
-                           ),
-                           style: ElevatedButton.styleFrom(
-                             primary: Color(0xff4e6491),
-                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28))
                            ),
                          ),
                        ),
