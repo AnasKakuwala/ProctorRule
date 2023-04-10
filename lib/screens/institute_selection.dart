@@ -35,7 +35,7 @@ class _InstituteSelectionState extends State<InstituteSelection> {
             Navigator.pop(context);
           },
         ),
-        title: const Text("Institute Selection"),
+        title: const Text("Institute Selection",style: TextStyle(color: Colors.white)),
         centerTitle: true,
         backgroundColor: Colors.grey[700],
       ),

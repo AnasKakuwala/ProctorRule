@@ -25,7 +25,8 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       drawer: AppDrawer(),
       appBar: AppBar(
-        title: const Text("ProctorRule"),
+        backgroundColor: Colors.grey[700],
+        title: const Text("ProctorRule",style: TextStyle(color: Colors.white),),
       ),
       body: const MainBody(),
       bottomNavigationBar: BottomNavigationBar(

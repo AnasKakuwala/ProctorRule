@@ -1,21 +1,16 @@
-import 'dart:io';
-import 'dart:math';
-
+import 'dart:html';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
-import '../providers/Institute_model.dart';
-import '../screens/classroom_selection.dart';
-
-class MseWid extends StatefulWidget {
-  const MseWid({Key? key}) : super(key: key);
+class UploadTS extends StatefulWidget {
+  const UploadTS({Key? key}) : super(key: key);
 
   @override
-  State<MseWid> createState() => _MseWidState();
+  State<UploadTS> createState() => _UploadTSState();
 }
 
-class _MseWidState extends State<MseWid> {
+class _UploadTSState extends State<UploadTS> {
   PlatformFile? pickedFile;
   UploadTask? uploadTask;
   Future selectFile() async {
@@ -43,19 +38,6 @@ class _MseWidState extends State<MseWid> {
     });
   }
 
-  String? setValue;
-  List<String> institute=[
-    "IITE - Indus Institute of Technology & Engineering",
-    "IAS - Indus Architecture School",
-    "IDS - Indus Design School",
-    "IIICT - Indus Institute of Information & Communication Technology",
-    "IIMS - Indus Institute of Management Studies",
-    "IISHLS - Indus Institute of Sciences Humanities & Liberal Studies",
-    "IISS - Indus Institute of Special Studies",
-    "IIL - Indus Institute of Law",
-    "IIPR - Indus Institute of Pharmacy and Research",
-    "IIATE - Indus Institute of Aviation Technology and Engineering",
-  ];
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -63,45 +45,6 @@ class _MseWidState extends State<MseWid> {
         children: [
           SizedBox(
             height: 30,
-          ),
-          Text("Select Institute",
-            style: TextStyle(
-            fontSize: 40.0,
-            fontWeight: FontWeight.bold,
-            fontStyle: FontStyle.italic
-            ),
-          ),
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Container(
-                padding: EdgeInsets.only(left: 16.0,right: 16.0),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black),
-                  borderRadius: BorderRadius.all(Radius.circular(10.0))
-                ),
-                child: DropdownButton(
-                  icon: Icon(Icons.arrow_drop_down_circle_rounded,size: 30,),
-                  isExpanded: true,
-                  hint: Text("Select institute",style: TextStyle(fontSize: 20.0),),
-                  value: setValue,
-                  onChanged:(newValue){
-                    setState(() {
-                      setValue = newValue;
-                    });
-                  },
-                  items: institute.map((valueItem) {
-                    return DropdownMenuItem(
-                      value: valueItem,
-                      child: Text(valueItem),
-                    );
-                  }).toList(),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 20.0,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -158,7 +101,7 @@ class _MseWidState extends State<MseWid> {
                       //     minimumSize: MaterialStateProperty.all(Size(20.0, 50.0))
                       // ),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.grey[700],
+                          backgroundColor: Colors.grey[700],
                           minimumSize: Size(20, 50)
                       ),
                     ),
@@ -181,34 +124,28 @@ class _MseWidState extends State<MseWid> {
               ),
             ],
           ),
-          // if(pickedFile != null)
-          //   Row(
-          //       children: [
-          //         Center(
-          //           child: Container(
-          //             margin: EdgeInsets.all(10),
-          //             height: 120,
-          //             width: 120,
-          //             color: Colors.grey,
-          //             child: Image(
-          //               image: FileImage(File(pickedFile!.path!)),
-          //               // File(pickedFile!.path!),
-          //               width: double.infinity,
-          //               fit: BoxFit.cover,
-          //             ),
-          //           ),
-          //         ),
-          //       ],
-          //   ),
+          if(pickedFile != null)
+            Row(
+              children: [
+                Center(
+                  child: Container(
+                    margin: EdgeInsets.all(10),
+                    height: 120,
+                    width: 120,
+                    color: Colors.grey,
+                    child: Image(
+                      image: FileImage(File(pickedFile!.path!)),
+                      // File(pickedFile!.path!),
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+
           SizedBox(height: 150,),
           buildProgress(),
-          SizedBox(height: 50,),
-          ElevatedButton(
-            onPressed: () => {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ClassroomsScreen()))
-            },
-            child: Text("Select classrooms "),
-          ),
         ],
       ),
     );
@@ -243,5 +180,5 @@ class _MseWidState extends State<MseWid> {
           return const SizedBox(height: 50,);
         }
       });
+  }
 }
-

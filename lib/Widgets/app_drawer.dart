@@ -27,7 +27,7 @@ class AppDrawer extends StatelessWidget {
               },
             ),
             backgroundColor: Colors.grey[700],
-            title: const Text("ProctorRule"),
+            title: const Text("ProctorRule",style: TextStyle(color: Colors.white),),
           ),
           const Divider(
           ),
