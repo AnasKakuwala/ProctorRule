@@ -1,4 +1,6 @@
-import 'dart:html';
+// import 'dart:html';
+import 'dart:io';
+import 'dart:math';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -40,113 +42,132 @@ class _UploadTSState extends State<UploadTS> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          SizedBox(
-            height: 30,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 20.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () => {
-                        selectFile(),
-                      },
-                      child: Text("Select Time Table",style: TextStyle(color: Colors.white),),
-                      // style: ButtonStyle(
-                      //     minimumSize: MaterialStateProperty.all(Size(20.0, 50.0))
-                      // ),
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.grey[700],
-                          minimumSize: Size(20, 50)
-                      ),
-                    ),
-
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    ElevatedButton(
-                      onPressed: () => {
-                        uploadFile(),
-                      },
-                      child: Text("Upload Time Table",style: TextStyle(color: Colors.white),),
-                      // style: ButtonStyle(
-                      //   minimumSize: MaterialStateProperty.all(Size(20.0, 50.0))
-                      // ),
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.grey[700],
-                          minimumSize: Size(20, 50)
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () => {
-                        selectFile(),
-                      },
-                      child: Text("Select Student List",style: TextStyle(color: Colors.white),),
-                      // style: ButtonStyle(
-                      //     minimumSize: MaterialStateProperty.all(Size(20.0, 50.0))
-                      // ),
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.grey[700],
-                          minimumSize: Size(20, 50)
-                      ),
-                    ),
-                    SizedBox(height: 20.0,),
-                    ElevatedButton(
-                      onPressed: () => {
-                        uploadFile(),
-                      },
-                      child: Text("Upload Student List",style: TextStyle(color: Colors.white),),
-                      // style: ButtonStyle(
-                      //   minimumSize: MaterialStateProperty.all(Size(20.0, 50.0))
-                      // ),
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.grey[700],
-                          minimumSize: Size(20, 50)
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          if(pickedFile != null)
+    return Scaffold(
+      appBar: AppBar(title: Text("Upload",style: TextStyle(color: Colors.white),),
+        backgroundColor: Colors.grey[700],
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 30,
+            ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Center(
-                  child: Container(
-                    margin: EdgeInsets.all(10),
-                    height: 120,
-                    width: 120,
-                    color: Colors.grey,
-                    child: Image(
-                      image: FileImage(File(pickedFile!.path!)),
-                      // File(pickedFile!.path!),
-                      width: double.infinity,
-                      fit: BoxFit.cover,
-                    ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 20.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () => {
+                          selectFile(),
+                        },
+                        child: Text("Select Time Table",style: TextStyle(color: Colors.white),),
+// style: ButtonStyle(
+//     minimumSize: MaterialStateProperty.all(Size(20.0, 50.0))
+// ),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.grey[700],
+                            minimumSize: Size(20, 50)
+                        ),
+                      ),
+
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      ElevatedButton(
+                        onPressed: () => {
+                          uploadFile(),
+                        },
+                        child: Text("Upload Time Table",style: TextStyle(color: Colors.white),),
+// style: ButtonStyle(
+//   minimumSize: MaterialStateProperty.all(Size(20.0, 50.0))
+// ),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.grey[700],
+                            minimumSize: Size(20, 50)
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () => {
+                          selectFile(),
+                        },
+                        child: Text("Select Student List",style: TextStyle(color: Colors.white),),
+// style: ButtonStyle(
+//     minimumSize: MaterialStateProperty.all(Size(20.0, 50.0))
+// ),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.grey[700],
+                            minimumSize: Size(20, 50)
+                        ),
+                      ),
+                      SizedBox(height: 20.0,),
+                      ElevatedButton(
+                        onPressed: () => {
+                          uploadFile(),
+                        },
+                        child: Text("Upload Student List",style: TextStyle(color: Colors.white),),
+// style: ButtonStyle(
+//   minimumSize: MaterialStateProperty.all(Size(20.0, 50.0))
+// ),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.grey[700],
+                            minimumSize: Size(20, 50)
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
+            if(pickedFile != null)
+              Row(
+                children: [
+                  Center(
+                    child: Container(
+                      margin: EdgeInsets.all(10),
+                      height: 120,
+                      width: 120,
+                      color: Colors.grey,
+                      child: Image(
+                        image: FileImage(File(pickedFile!.path!)),
+// File(pickedFile!.path!),
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
 
-          SizedBox(height: 150,),
-          buildProgress(),
-        ],
+            SizedBox(height: 150,),
+            buildProgress(),
+            SizedBox(height: 150,),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10,),
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.grey[700]),
+                  onPressed: ()=>{
+                    // Navigator.push(context, MaterialPageRoute(builder: (context)=> const UploadTS()))
+                  },
+                  child: const Text("Select Classroom",style: TextStyle(color: Colors.white,fontSize: 18),),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -181,4 +202,4 @@ class _UploadTSState extends State<UploadTS> {
         }
       });
   }
-}
+

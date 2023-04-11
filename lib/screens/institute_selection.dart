@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proctor_rule/Widgets/app_drawer.dart';
+import 'package:proctor_rule/screens/uploadTSScreen.dart';
 // import 'package:proctor_rule/Widgets/main_body.dart';
 import '../providers/Institute_model.dart';
 
@@ -58,7 +59,9 @@ class _InstituteSelectionState extends State<InstituteSelection> {
                 child: SizedBox(width: double.infinity,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(backgroundColor: Colors.grey[700]),
-                    onPressed: (){},
+                    onPressed: ()=>{
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const UploadTS()))
+                    },
                     child: const Text("Next",style: TextStyle(color: Colors.white,fontSize: 18),),
                   ),
                 ),
