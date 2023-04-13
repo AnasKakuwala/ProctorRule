@@ -1,7 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:proctor_rule/screens/scheduleTable.dart';
+import 'package:proctor_rule/screens/subjectTable.dart';
 // import 'package:proctor_rule/screens/login.dart';
 // import '../screens/login.dart';
+import '../screens/facultyTable.dart';
+import '../screens/classroomTable.dart';
+import '../screens/branchTable.dart';
+import '../screens/dutiesTable.dart';
+import '../screens/instituteTable.dart';
+import '../screens/scheduleTable.dart';
 
 class AppDrawer extends StatelessWidget {
   AppDrawer({Key? key}) : super(key: key);
@@ -28,7 +36,9 @@ class AppDrawer extends StatelessWidget {
               Icons.edit,
             ),
             title: const  Text("Faculties"),
-            onTap: () => {}
+            onTap: () => {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> FacultyTable()))
+            }
           ),
           const Divider(),
           ListTile(
@@ -36,7 +46,9 @@ class AppDrawer extends StatelessWidget {
               Icons.edit,
             ),
             title: const Text("Classrooms"),
-            onTap: () => {}
+            onTap: () => {
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> ClassroomTable()))
+            }
           ),
           const Divider(),
           ListTile(
@@ -44,7 +56,9 @@ class AppDrawer extends StatelessWidget {
               Icons.edit,
             ),
             title: const Text("Schedule"),
-            onTap: () => {}
+            onTap: () => {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> ScheduleTable()))
+            }
           ),
           const Divider(),
           ListTile(
@@ -52,7 +66,9 @@ class AppDrawer extends StatelessWidget {
               Icons.edit,
             ),
             title: const Text("Institutes"),
-            onTap: () => {}
+            onTap: () => {
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> InstituteTable()))
+            }
           ),
           const Divider(),
           ListTile(
@@ -60,7 +76,9 @@ class AppDrawer extends StatelessWidget {
               Icons.edit,
             ),
             title: const Text("Subjects"),
-            onTap: () => {}
+            onTap: () => {
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>  SubjectTable()))
+            }
           ),
           const Divider(),
           ListTile(
@@ -68,7 +86,9 @@ class AppDrawer extends StatelessWidget {
               Icons.edit,
             ),
             title: const Text("Branches"),
-            onTap: () => {}
+            onTap: () => {
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> BranchTable()))
+            }
           ),
           const Divider(),
           ListTile(
@@ -76,7 +96,9 @@ class AppDrawer extends StatelessWidget {
               Icons.edit,
             ),
             title: const Text("Duties"),
-            onTap: () => {}
+            onTap: () => {
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> DutiesTable()))
+            }
           ),
           const Divider(),
           ListTile(
