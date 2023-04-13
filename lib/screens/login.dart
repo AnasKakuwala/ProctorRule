@@ -125,6 +125,9 @@ class _LoginScreenState extends State<LoginScreen> {
                              if(user != null){
                                Navigator.push(context,MaterialPageRoute(builder: (context) => const MainScreen()));
                              }
+
+                             //shared preference code to be written
+
                            },
                            style: ElevatedButton.styleFrom(
 

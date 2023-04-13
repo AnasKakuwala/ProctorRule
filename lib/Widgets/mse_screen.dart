@@ -5,6 +5,9 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
+import '../providers/Institute_model.dart';
+import '../screens/classroom_selection.dart';
+
 class MseWid extends StatefulWidget {
   const MseWid({Key? key}) : super(key: key);
 
@@ -41,7 +44,18 @@ class _MseWidState extends State<MseWid> {
   }
 
   String? setValue;
-  List<String> institute = ['IIICT','IIMS','IITE','IISHLS','IDS','IAS','IISS','IIL','IIPR','IIATE'];
+  List<String> institute=[
+    "IITE - Indus Institute of Technology & Engineering",
+    "IAS - Indus Architecture School",
+    "IDS - Indus Design School",
+    "IIICT - Indus Institute of Information & Communication Technology",
+    "IIMS - Indus Institute of Management Studies",
+    "IISHLS - Indus Institute of Sciences Humanities & Liberal Studies",
+    "IISS - Indus Institute of Special Studies",
+    "IIL - Indus Institute of Law",
+    "IIPR - Indus Institute of Pharmacy and Research",
+    "IIATE - Indus Institute of Aviation Technology and Engineering",
+  ];
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -151,28 +165,34 @@ class _MseWidState extends State<MseWid> {
               ),
             ],
           ),
-          if(pickedFile != null)
-            Row(
-                children: [
-                  Center(
-                    child: Container(
-                      margin: EdgeInsets.all(10),
-                      height: 120,
-                      width: 120,
-                      color: Colors.grey,
-                      child: Image(
-                        image: FileImage(File(pickedFile!.path!)),
-                        // File(pickedFile!.path!),
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ],
-            ),
-
+          // if(pickedFile != null)
+          //   Row(
+          //       children: [
+          //         Center(
+          //           child: Container(
+          //             margin: EdgeInsets.all(10),
+          //             height: 120,
+          //             width: 120,
+          //             color: Colors.grey,
+          //             child: Image(
+          //               image: FileImage(File(pickedFile!.path!)),
+          //               // File(pickedFile!.path!),
+          //               width: double.infinity,
+          //               fit: BoxFit.cover,
+          //             ),
+          //           ),
+          //         ),
+          //       ],
+          //   ),
           SizedBox(height: 150,),
           buildProgress(),
+          SizedBox(height: 50,),
+          ElevatedButton(
+            onPressed: () => {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ClassroomsScreen()))
+            },
+            child: Text("Select classrooms "),
+          ),
         ],
       ),
     );
