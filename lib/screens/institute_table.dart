@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:proctor_rule/screens/addInstitute.dart';
+import 'package:proctor_rule/screens/editInstitute.dart';
 
 // QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection('your_collection').where('field_name', isEqualTo: 'field_value').get();
 
@@ -79,7 +81,9 @@ class _InstituteTableState extends State<InstituteTable> {
         title: const Text("Institutes"),
         actions: [
           IconButton(
-              onPressed: () => {},
+              onPressed: () => {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const AddInstitute()))
+              },
               icon: Icon(Icons.add))
         ],
       ),
@@ -122,7 +126,9 @@ class _InstituteTableState extends State<InstituteTable> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         IconButton(
-                          onPressed: () => {},
+                          onPressed: () => {
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>  EditInstitute(institute: )))
+                          },
                           icon: Icon(Icons.edit,color: Colors.grey,),
                         ),
                         IconButton(

@@ -64,7 +64,7 @@ class _MseWidState extends State<MseWid> {
           SizedBox(
             height: 30,
           ),
-          Text("Select institute",
+          Text("Select Institute",
             style: TextStyle(
             fontSize: 40.0,
             fontWeight: FontWeight.bold,
@@ -115,9 +115,13 @@ class _MseWidState extends State<MseWid> {
                       onPressed: () => {
                         selectFile(),
                       },
-                      child: Text("Select time table",style: TextStyle(color: Colors.white),),
-                      style: ButtonStyle(
-                          minimumSize: MaterialStateProperty.all(Size(20.0, 50.0))
+                      child: Text("Select Time Table",style: TextStyle(color: Colors.white),),
+                      // style: ButtonStyle(
+                      //     minimumSize: MaterialStateProperty.all(Size(20.0, 50.0))
+                      // ),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.grey[700],
+                          minimumSize: Size(20, 50)
                       ),
                     ),
 
@@ -128,9 +132,13 @@ class _MseWidState extends State<MseWid> {
                       onPressed: () => {
                         uploadFile(),
                       },
-                      child: Text("Upload time table",style: TextStyle(color: Colors.white),),
-                      style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all(Size(20.0, 50.0))
+                      child: Text("Upload Time Table",style: TextStyle(color: Colors.white),),
+                      // style: ButtonStyle(
+                      //   minimumSize: MaterialStateProperty.all(Size(20.0, 50.0))
+                      // ),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.grey[700],
+                          minimumSize: Size(20, 50)
                       ),
                     ),
                   ],
@@ -145,9 +153,13 @@ class _MseWidState extends State<MseWid> {
                       onPressed: () => {
                         selectFile(),
                       },
-                      child: Text("Select student list",style: TextStyle(color: Colors.white),),
-                      style: ButtonStyle(
-                          minimumSize: MaterialStateProperty.all(Size(20.0, 50.0))
+                      child: Text("Select Student List",style: TextStyle(color: Colors.white),),
+                      // style: ButtonStyle(
+                      //     minimumSize: MaterialStateProperty.all(Size(20.0, 50.0))
+                      // ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.grey[700],
+                          minimumSize: Size(20, 50)
                       ),
                     ),
                     SizedBox(height: 20.0,),
@@ -155,9 +167,13 @@ class _MseWidState extends State<MseWid> {
                       onPressed: () => {
                         uploadFile(),
                       },
-                      child: Text("Upload student list",style: TextStyle(color: Colors.white),),
-                      style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all(Size(20.0, 50.0))
+                      child: Text("Upload Student List",style: TextStyle(color: Colors.white),),
+                      // style: ButtonStyle(
+                      //   minimumSize: MaterialStateProperty.all(Size(20.0, 50.0))
+                      // ),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.grey[700],
+                          minimumSize: Size(20, 50)
                       ),
                     ),
                   ],

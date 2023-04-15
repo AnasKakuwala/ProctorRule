@@ -27,7 +27,7 @@ class _MainBodyState extends State<MainBody> {
               style: ElevatedButton.styleFrom(
               backgroundColor: Colors.grey[700],
               ),
-              child: const Text("ESE"),
+              child: const Text("ESE",style: TextStyle(color: Colors.white),),
               onPressed: () {
                 // Navigator.of(context).pushReplacement();
                 Navigator.push(context, MaterialPageRoute(builder: (context)=> const InstituteSelection()));
@@ -43,7 +43,7 @@ class _MainBodyState extends State<MainBody> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.grey[700],
               ),
-              child: const Text("MSE"),
+              child: const Text("MSE",style: TextStyle(color: Colors.white),),
             ),
           );
         }
