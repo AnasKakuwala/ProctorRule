@@ -59,7 +59,6 @@ class _ClassroomGridState extends State<ClassroomGrid> {
                     ),
                   )
                       : SizedBox(),
-
                 ],
               ),
             );

@@ -38,8 +38,12 @@ dependencies:
   # Firebase auth and firebase core
   firebase_core: ^2.9.0
   firebase_auth: ^4.4.0
+  firestore_ui: ^1.25.1
+  firebase_database: ^10.1.0
+  cloud_firestore: ^4.5.1
 
-
+  #Toast
+  fluttertoast: ^8.2.1
   #Firebase storage
   firebase_storage: ^11.1.0
 

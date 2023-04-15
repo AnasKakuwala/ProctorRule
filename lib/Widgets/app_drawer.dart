@@ -8,7 +8,7 @@ import '../screens/facultyTable.dart';
 import '../screens/classroomTable.dart';
 import '../screens/branchTable.dart';
 import '../screens/dutiesTable.dart';
-import '../screens/instituteTable.dart';
+import '../screens/institute_table.dart';
 import '../screens/scheduleTable.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -67,7 +67,7 @@ class AppDrawer extends StatelessWidget {
             ),
             title: const Text("Institutes"),
             onTap: () => {
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> InstituteTable()))
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> InstituteTable()))
             }
           ),
           const Divider(),
