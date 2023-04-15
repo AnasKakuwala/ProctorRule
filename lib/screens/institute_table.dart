@@ -15,13 +15,33 @@ class _InstituteTableState extends State<InstituteTable> {
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  Future<void> _showConfirmationDialog() async {
+  Future<void> deleteDocument(String docId) async {
+    try {
+      await firestore.collection('Institute').doc(docId).delete();
+    } catch (e) {
+      Fluttertoast.showToast(
+        msg: 'Error occurred',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.black,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+    }
+  }
+
+  Future<void> _showConfirmationDialog(String id) async {
+    await firestore.collection('Institute').doc(id).snapshots();
+    void getShName(BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
+      List<DocumentSnapshot> documents = snapshot.data!.docs;
+
+    }
     final bool? confirmed = await showDialog<bool>(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Are you sure?'),
-          content: Text('Do you want to perform this action?'),
+          content: Text('Do you want to delete ${id} ?'),
           actions: [
             TextButton(
               child: Text('Cancel'),
@@ -39,32 +59,16 @@ class _InstituteTableState extends State<InstituteTable> {
         );
       },
     );
-
     if (confirmed == true) {
-      Future<void> deleteDocument(String docId) async {
-        try {
-          await firestore.collection('Institute').doc(docId).delete();
-          Fluttertoast.showToast(
-            msg: 'Record Deleted',
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            backgroundColor: Colors.black,
-            textColor: Colors.white,
-            fontSize: 16.0,
-          );
-        } catch (e) {
-          Fluttertoast.showToast(
-            msg: 'Error occurred',
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            backgroundColor: Colors.black,
-            textColor: Colors.white,
-            fontSize: 16.0,
-          );
-        }
-      }
-    } else {
-
+      deleteDocument(id);
+      Fluttertoast.showToast(
+        msg: 'Record Deleted',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.black,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
     }
   }
 
@@ -103,6 +107,7 @@ class _InstituteTableState extends State<InstituteTable> {
                 var data = document.data() as Map<String, dynamic>;
                 var institueShortName = data['I_SH_NAME'] as String?;
                 var instituteFullName = data['I_FL_NAME'] as String?;
+                String docId = document.id;
                 return Padding(
                   padding: const EdgeInsets.only(left: 5,right: 5,bottom: 2,top: 2),
                   child: ListTile(
@@ -121,7 +126,9 @@ class _InstituteTableState extends State<InstituteTable> {
                           icon: Icon(Icons.edit,color: Colors.grey,),
                         ),
                         IconButton(
-                          onPressed: () => {},
+                          onPressed: () => {
+                            _showConfirmationDialog(docId),
+                          },
                           icon: Icon(Icons.delete,color: Colors.red,),
                         ),
 
