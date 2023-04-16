@@ -109,8 +109,8 @@ class _InstituteTableState extends State<InstituteTable> {
             return ListView(
               children: documents.map((DocumentSnapshot document) {
                 var data = document.data() as Map<String, dynamic>;
-                var institueShortName = data['I_SH_NAME'] as String?;
-                var instituteFullName = data['I_FL_NAME'] as String?;
+                var instituteShortName = data['I_SH_NAME'];
+                var instituteFullName = data['I_FL_NAME'];
                 String docId = document.id;
                 return Padding(
                   padding: const EdgeInsets.only(left: 5,right: 5,bottom: 2,top: 2),
@@ -120,14 +120,14 @@ class _InstituteTableState extends State<InstituteTable> {
                         child: Icon(Icons.school)
                     ),
                     tileColor: Colors.black12,
-                    title: Text(institueShortName ?? ''),
+                    title: Text(instituteShortName ?? ''),
                     subtitle: Text(instituteFullName ?? ''),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         IconButton(
                           onPressed: () => {
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>  EditInstitute(institute: )))
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>  EditInstitute(id: docId, sName: instituteShortName, fName: instituteFullName)))
                           },
                           icon: Icon(Icons.edit,color: Colors.grey,),
                         ),
