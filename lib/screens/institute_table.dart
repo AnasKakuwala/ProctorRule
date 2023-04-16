@@ -43,10 +43,10 @@ class _InstituteTableState extends State<InstituteTable> {
         // if (confirmed == true){
           deleteDocument(id);
           Fluttertoast.showToast(
-            msg: 'Record Deleted',
+            msg: '${id} Deleted',
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM,
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.grey,
             textColor: Colors.white,
             fontSize: 16.0,
           );
@@ -78,17 +78,17 @@ class _InstituteTableState extends State<InstituteTable> {
         );
       },
     );
-    if (confirmed == true) {
-      deleteDocument(id);
-      Fluttertoast.showToast(
-        msg: 'Record Deleted',
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        backgroundColor: Colors.black,
-        textColor: Colors.white,
-        fontSize: 16.0,
-      );
-    }
+    // if (confirmed == true) {
+    //   deleteDocument(id);
+    //   Fluttertoast.showToast(
+    //     msg: 'Record Deleted',
+    //     toastLength: Toast.LENGTH_SHORT,
+    //     gravity: ToastGravity.BOTTOM,
+    //     backgroundColor: Colors.black,
+    //     textColor: Colors.white,
+    //     fontSize: 16.0,
+    //   );
+    // }
     // void showToast(){
     //   if (confirmed == true){
     //     deleteDocument(id);
@@ -109,6 +109,7 @@ class _InstituteTableState extends State<InstituteTable> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.grey[700],
         title: const Text("Institutes"),
         actions: [
           IconButton(
