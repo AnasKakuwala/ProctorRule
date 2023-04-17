@@ -18,6 +18,10 @@ class ViewFaculty extends StatefulWidget {
 class _ViewFacultyState extends State<ViewFaculty> {
   @override
   Widget build(BuildContext context) {
+// final FirebaseFirestore firestore = FirebaseFirestore.instance;
+// DocumentReference docRef = firestore.collection('Faculties').doc(widget.id);
+// final DocumentSnapshot docSnapshot = docRef.get() as DocumentSnapshot<Object?>;
+//     var data = docSnapshot.data() as Map<String, dynamic>;
   final deviceHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
@@ -39,44 +43,62 @@ class _ViewFacultyState extends State<ViewFaculty> {
               ),
               SizedBox(
                 height: deviceHeight * 0.65,
-                child: StreamBuilder<QuerySnapshot>(
-                  stream: FirebaseFirestore.instance.collection('Institute').snapshots(),
-                  builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                    if (snapshot.hasError) {
-                      return Text('Error: ${snapshot.error}');
-                    }
-
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-
-                    if (snapshot.data == null) {
-                      return const Text('No data available');
-                    }
-                    List<DocumentSnapshot> documents = snapshot.data!.docs;
-                    return ListView(
-                      children: documents.map((DocumentSnapshot document) {
-                        var data = document.data() as Map<String, dynamic>;
-                        var instituteShortName = data['I_SH_NAME'];
-                        var instituteFullName = data['I_FL_NAME'];
-                        String docId = document.id;
-                        return Padding(
-                          padding: const EdgeInsets.only(left: 5,right: 5,bottom: 2,top: 2),
-                          child: ListTile(
-                            leading: const CircleAvatar(
-                                radius: 20,
-                                child: Icon(Icons.school)
-                            ),
-                            tileColor: Colors.black12,
-                            title: Text(instituteShortName ?? ''),
-                            subtitle: Text(instituteFullName ?? ''),
+                child: ListView(
+                  children: [
+                    ListTile(
+                      title: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: const [
+                                  Divider(),
+                                  Text('Name:'),
+                                  Divider(),
+                                  Text('Institute name'),
+                                  Divider(),
+                                  Text('Contact No'),
+                                  Divider(),
+                                  Text('Email ID'),
+                                  Divider(),
+                                  Text('subject code'),
+                                ],
+                              ),
+                              SizedBox(width: 10),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Divider(),
+                                  Text(widget.Fname),
+                                  Divider(),
+                                  Text(widget.I_shortname),
+                                  Divider(),
+                                  Text(widget.ContactNo),
+                                  Divider(),
+                                  Text(widget.EmailID),
+                                  Divider(),
+                                  Text(widget.Subcode),
+                                ],
+                              ),
+                            ],
                           ),
-                        );
-                      }).toList(),
-                    );
-                  },
+                          const SizedBox(height: 10,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ElevatedButton(onPressed: () => {}, child: Text('Update'),),
+                              const SizedBox(width: 90,),
+                              ElevatedButton(onPressed: () => {}, child: Text('Delete'),style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.red))),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
