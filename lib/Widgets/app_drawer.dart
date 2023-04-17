@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:proctor_rule/screens/login.dart';
 import 'package:proctor_rule/screens/scheduleTable.dart';
 import 'package:proctor_rule/screens/subjectTable.dart';
 // import 'package:proctor_rule/screens/login.dart';
@@ -107,7 +108,8 @@ class AppDrawer extends StatelessWidget {
             ),
             title: const Text("Logout"),
             onTap: () => {
-                _auth.signOut()
+                _auth.signOut(),
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginScreen()))
             }
           )
         ],
