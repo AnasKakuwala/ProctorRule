@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ViewFaculty extends StatefulWidget {
   const ViewFaculty({super.key,required this.id,required this.I_shortname, required this.Fname, required this.EmailID, required this.ContactNo, required this.Subcode});
@@ -16,6 +17,98 @@ class ViewFaculty extends StatefulWidget {
 }
 
 class _ViewFacultyState extends State<ViewFaculty> {
+
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  Future<void> deleteDocument(String docId) async {
+    try {
+      await firestore.collection('Faculties').doc(docId).delete();
+    } catch (e) {
+      Fluttertoast.showToast(
+        msg: 'Error occurred',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.black,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+    }
+  }
+  
+  Future<void> _showConfirmationDialog(String id) async {
+    await firestore.collection('Institute').doc(id).snapshots();
+    void getShName(BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
+      List<DocumentSnapshot> documents = snapshot.data!.docs;
+
+    }
+    void showToast(){
+      // if (confirmed == true){
+      deleteDocument(id);
+      Fluttertoast.showToast(
+        msg: '${id} Deleted',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+      // }
+    }
+    final bool? confirmed = await showDialog<bool>(
+
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Are you sure?'),
+          content: Text('Do you want to delete ${id} ?'),
+          actions: [
+            TextButton(
+              child: Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop(false);
+              },
+            ),
+            TextButton(
+              child: Text('Confirm'),
+              onPressed: () {
+                Navigator.of(context).pop(true);
+                showToast();
+              },
+
+            ),
+          ],
+        );
+      },
+    );
+    // if (confirmed == true) {
+    //   deleteDocument(id);
+    //   Fluttertoast.showToast(
+    //     msg: 'Record Deleted',
+    //     toastLength: Toast.LENGTH_SHORT,
+    //     gravity: ToastGravity.BOTTOM,
+    //     backgroundColor: Colors.black,
+    //     textColor: Colors.white,
+    //     fontSize: 16.0,
+    //   );
+    // }
+    // void showToast(){
+    //   if (confirmed == true){
+    //     deleteDocument(id);
+    //     Fluttertoast.showToast(
+    //       msg: 'Record Deleted',
+    //       toastLength: Toast.LENGTH_SHORT,
+    //       gravity: ToastGravity.BOTTOM,
+    //       backgroundColor: Colors.black,
+    //       textColor: Colors.white,
+    //       fontSize: 16.0,
+    //     );
+    //   }
+    // }
+
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
 // final FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -92,7 +185,7 @@ class _ViewFacultyState extends State<ViewFaculty> {
                             children: [
                               ElevatedButton(onPressed: () => {}, child: Text('Update'),),
                               const SizedBox(width: 90,),
-                              ElevatedButton(onPressed: () => {}, child: Text('Delete'),style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.red))),
+                              ElevatedButton(onPressed: () => { _showConfirmationDialog(widget.id)}, child: Text('Delete'),style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.red))),
                             ],
                           ),
                         ],
