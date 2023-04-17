@@ -25,6 +25,7 @@ class _ViewFacultyState extends State<ViewFaculty> {
   final deviceHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.grey[700],
         title: const Text('View Facluty'),
       ),
       body: SafeArea(
@@ -90,7 +91,7 @@ class _ViewFacultyState extends State<ViewFaculty> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              ElevatedButton(onPressed: () => {}, child: Text('Update'),),
+                              ElevatedButton(onPressed: () => {}, child: Text('Update'),style: ElevatedButton.styleFrom(backgroundColor: Colors.grey[700]),),
                               const SizedBox(width: 90,),
                               ElevatedButton(onPressed: () => {}, child: Text('Delete'),style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.red))),
                             ],
