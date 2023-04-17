@@ -32,58 +32,56 @@ class _FacultyTableState extends State<FacultyTable> {
         ],
       ),
 
-      body: Container(
-        child: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance.collection('Faculties')
-              .snapshots(),
-          builder: (BuildContext context,
-              AsyncSnapshot<QuerySnapshot> snapshot) {
-            if (snapshot.hasError) {
-              return Text('Error: ${snapshot.error}');
-            }
+      body: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance.collection('Faculties')
+            .snapshots(),
+        builder: (BuildContext context,
+            AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error}');
+          }
 
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-
-            if (snapshot.data == null) {
-              return const Text('No data available');
-            }
-            //document.map(() {})
-            List<DocumentSnapshot> documents = snapshot.data!.docs;
-            return ListView(
-              children: documents.map((DocumentSnapshot document) {
-                var data = document.data() as Map<String, dynamic>;
-                var facultyName = data['Fname'];
-                var instituteShortName = data['I_SH_NAME'];
-                var emailId = data['FEmailID'];
-                var contactNo = data['FContactNo'];
-                var subjectCode = data['subject_code'];
-                String docId = document.id;
-                return ListTile(
-                  leading: const CircleAvatar(
-                    child: Icon(Icons.person),
-                  ),
-                  title: Text(facultyName),
-                  subtitle: Text(instituteShortName),
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      IconButton(
-                        onPressed: () => {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => ViewFaculty(id: docId,I_shortname: instituteShortName, Fname: facultyName, EmailID: emailId, ContactNo: contactNo, Subcode: subjectCode,)))
-                        },
-                        icon: const Icon(Icons.arrow_right, color: Colors.grey,),
-                      ),
-                    ],
-                  ),
-                );
-              }).toList(),
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
             );
-          },
-        ),
+          }
+
+          if (snapshot.data == null) {
+            return const Text('No data available');
+          }
+          //document.map(() {})
+          List<DocumentSnapshot> documents = snapshot.data!.docs;
+          return ListView(
+            children: documents.map((DocumentSnapshot document) {
+              var data = document.data() as Map<String, dynamic>;
+              var facultyName = data['Fname'];
+              var instituteShortName = data['I_SH_NAME'];
+              var emailId = data['FEmailID'];
+              var contactNo = data['FContactNo'];
+              var subjectCode = data['subject_code'];
+              String docId = document.id;
+              return ListTile(
+                leading: const CircleAvatar(
+                  child: Icon(Icons.person),
+                ),
+                title: Text(facultyName),
+                subtitle: Text(instituteShortName),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      onPressed: () => {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => ViewFaculty(id: docId,I_shortname: instituteShortName, Fname: facultyName, EmailID: emailId, ContactNo: contactNo, Subcode: subjectCode,)))
+                      },
+                      icon: const Icon(Icons.arrow_right, color: Colors.grey,),
+                    ),
+                  ],
+                ),
+              );
+            }).toList(),
+          );
+        },
       ),
     );
   }
