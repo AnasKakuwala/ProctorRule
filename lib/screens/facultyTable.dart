@@ -20,6 +20,7 @@ class _FacultyTableState extends State<FacultyTable> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.grey[700],
         title: const Text("Faculties"),
         actions: [
           IconButton(
