@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:proctor_rule/screens/institute_table.dart';
 
 class AddInstitute extends StatefulWidget {
   const AddInstitute({Key? key}) : super(key: key);
@@ -81,6 +82,7 @@ class _AddInstituteState extends State<AddInstitute> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(appBar: AppBar(
+      backgroundColor: Colors.grey[700],
       title: const Text("Add Institute"),
     ),
       body: SingleChildScrollView(
@@ -93,6 +95,7 @@ class _AddInstituteState extends State<AddInstitute> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.grey[700]),
                   onPressed: (){
                     if(I_SH_NAMEController.text != "" && I_FL_NAMEController.text != ""){
                       sName = I_SH_NAMEController.text.toString();
@@ -107,6 +110,8 @@ class _AddInstituteState extends State<AddInstitute> {
                         print('Error getting number of documents: $error');
                       });
                     }
+                    // Navigator.push(context, MaterialPageRoute(builder: (context)=> const InstituteTable()));
+                    Navigator.of(context).pop();
                   },
                   child: Text('Add Institute'),
                 ),
@@ -115,9 +120,7 @@ class _AddInstituteState extends State<AddInstitute> {
                   I_FL_NAMEController.text="";
                   focusNode.requestFocus();
                 },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.grey,
-                  ),
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.grey[700]),
                   child: Text('Reset'),
                 ),
               ],

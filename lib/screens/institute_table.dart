@@ -15,6 +15,7 @@ class InstituteTable extends StatefulWidget {
 
 class _InstituteTableState extends State<InstituteTable> {
 
+
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   Future<void> deleteDocument(String docId) async {
@@ -38,7 +39,21 @@ class _InstituteTableState extends State<InstituteTable> {
       List<DocumentSnapshot> documents = snapshot.data!.docs;
 
     }
+    void showToast(){
+        // if (confirmed == true){
+          deleteDocument(id);
+          Fluttertoast.showToast(
+            msg: '${id} Deleted',
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            backgroundColor: Colors.grey,
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
+        // }
+      }
     final bool? confirmed = await showDialog<bool>(
+
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
@@ -55,29 +70,46 @@ class _InstituteTableState extends State<InstituteTable> {
               child: Text('Confirm'),
               onPressed: () {
                 Navigator.of(context).pop(true);
+                showToast();
               },
+
             ),
           ],
         );
       },
     );
-    if (confirmed == true) {
-      deleteDocument(id);
-      Fluttertoast.showToast(
-        msg: 'Record Deleted',
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        backgroundColor: Colors.black,
-        textColor: Colors.white,
-        fontSize: 16.0,
-      );
-    }
+    // if (confirmed == true) {
+    //   deleteDocument(id);
+    //   Fluttertoast.showToast(
+    //     msg: 'Record Deleted',
+    //     toastLength: Toast.LENGTH_SHORT,
+    //     gravity: ToastGravity.BOTTOM,
+    //     backgroundColor: Colors.black,
+    //     textColor: Colors.white,
+    //     fontSize: 16.0,
+    //   );
+    // }
+    // void showToast(){
+    //   if (confirmed == true){
+    //     deleteDocument(id);
+    //     Fluttertoast.showToast(
+    //       msg: 'Record Deleted',
+    //       toastLength: Toast.LENGTH_SHORT,
+    //       gravity: ToastGravity.BOTTOM,
+    //       backgroundColor: Colors.black,
+    //       textColor: Colors.white,
+    //       fontSize: 16.0,
+    //     );
+    //   }
+    // }
+
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.grey[700],
         title: const Text("Institutes"),
         actions: [
           IconButton(

@@ -28,14 +28,14 @@ class _EditInstituteState extends State<EditInstitute> {
   Future<void> updateDocument(String documentId, Map<String, dynamic> dataToUpdate) async {
     try {
       await FirebaseFirestore.instance.collection('Institute').doc(documentId).update(dataToUpdate);
-      Fluttertoast.showToast(
-        msg: "Document updated successfully!",
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.CENTER,
-        backgroundColor: Colors.amber,
-        textColor: Colors.white,
-        fontSize: 16.0,
-      );
+      // Fluttertoast.showToast(
+      //   msg: "Document updated successfully!",
+      //   toastLength: Toast.LENGTH_LONG,
+      //   gravity: ToastGravity.CENTER,
+      //   backgroundColor: Colors.amber,
+      //   textColor: Colors.white,
+      //   fontSize: 16.0,
+      // );
     } catch (e) {
       Fluttertoast.showToast(
         msg: 'Error updating document: $e',
@@ -56,6 +56,7 @@ class _EditInstituteState extends State<EditInstitute> {
     I_FL_NAMEController.text=widget.fName;
 
     return Scaffold(appBar: AppBar(
+      backgroundColor: Colors.grey[700],
       title: const Text("Add Institute"),
     ),
       body: SingleChildScrollView(
@@ -70,31 +71,32 @@ class _EditInstituteState extends State<EditInstitute> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.grey[700]),
                   onPressed: () {
                     String sh = I_SH_NAMEController.text;
                     String fl = I_FL_NAMEController.text;
                     Map<String,dynamic> dataToUpdate = {'I_SH_NAME' : sh,'I_FL_NAME': fl};
                     updateDocument(widget.id, dataToUpdate);
                     Fluttertoast.showToast(
-                      msg: "Document updated successfully!",
+                      msg: "Data Updated Successfully!",
                       toastLength: Toast.LENGTH_LONG,
-                      gravity: ToastGravity.CENTER,
-                      backgroundColor: Colors.amber,
+                      gravity: ToastGravity.BOTTOM,
+                      backgroundColor: Colors.grey,
                       textColor: Colors.white,
-                      fontSize: 4.0,
+                      fontSize: 16.0,
                     );
+                    Navigator.of(context).pop();
                 },
                   child: const Text('Update Institute'),
                 ),
-                ElevatedButton(onPressed: (){
+                ElevatedButton(
+                  onPressed: (){
                   I_IDController.text="";
                   I_SH_NAMEController.text="";
                   I_FL_NAMEController.text="";
                   focusNode.requestFocus();
                 },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.grey,
-                  ),
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.grey[700]),
                   child: const Text('Reset'),
                 ),
               ],
