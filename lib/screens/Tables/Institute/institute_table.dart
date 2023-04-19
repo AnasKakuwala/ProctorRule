@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:proctor_rule/screens/addInstitute.dart';
-import 'package:proctor_rule/screens/editInstitute.dart';
+import 'package:proctor_rule/screens/Tables/Institute/addInstitute.dart';
+import 'package:proctor_rule/screens/Tables/Institute/editInstitute.dart';
 
 // QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection('your_collection').where('field_name', isEqualTo: 'field_value').get();
 

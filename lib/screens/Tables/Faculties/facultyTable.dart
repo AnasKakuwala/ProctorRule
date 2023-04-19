@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:proctor_rule/screens/add_faculties.dart';
-import 'package:proctor_rule/screens/view_faculty.dart';
+import 'package:proctor_rule/screens/Tables/Faculties/add_faculties.dart';
+import 'package:proctor_rule/screens/Tables/Faculties/view_faculty.dart';
 
 // import 'edit_faculty.dart';
 
@@ -62,22 +62,26 @@ class _FacultyTableState extends State<FacultyTable> {
               var contactNo = data['FContactNo'];
               var subjectCode = data['subject_code'];
               String docId = document.id;
-              return ListTile(
-                leading: const CircleAvatar(
-                  child: Icon(Icons.person),
-                ),
-                title: Text(facultyName),
-                subtitle: Text(instituteShortName),
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    IconButton(
-                      onPressed: () => {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ViewFaculty(id: docId,I_shortname: instituteShortName, Fname: facultyName, EmailID: emailId, ContactNo: contactNo, Subcode: subjectCode,)))
-                      },
-                      icon: const Icon(Icons.arrow_right, color: Colors.grey,),
-                    ),
-                  ],
+              return Padding(
+                padding: const EdgeInsets.only(left: 5,right: 5,bottom: 2,top: 2),
+                child: ListTile(
+                  leading: const CircleAvatar(
+                    child: Icon(Icons.person),
+                  ),
+                  tileColor: Colors.black12,
+                  title: Text(facultyName),
+                  subtitle: Text(instituteShortName),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        onPressed: () => {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => ViewFaculty(id: docId,I_shortname: instituteShortName, Fname: facultyName, EmailID: emailId, ContactNo: contactNo, Subcode: subjectCode,)))
+                        },
+                        icon: const Icon(Icons.arrow_right, color: Colors.grey,size: 35.0),
+                      ),
+                    ],
+                  ),
                 ),
               );
             }).toList(),

@@ -5,11 +5,11 @@ import 'package:proctor_rule/screens/scheduleTable.dart';
 import 'package:proctor_rule/screens/subjectTable.dart';
 // import 'package:proctor_rule/screens/login.dart';
 // import '../screens/login.dart';
-import '../screens/facultyTable.dart';
+import '../screens/Tables/Faculties/facultyTable.dart';
 import '../screens/classroomTable.dart';
 import '../screens/branchTable.dart';
 import '../screens/dutiesTable.dart';
-import '../screens/institute_table.dart';
+import '../screens/Tables/Institute/institute_table.dart';
 import '../screens/scheduleTable.dart';
 
 class AppDrawer extends StatelessWidget {

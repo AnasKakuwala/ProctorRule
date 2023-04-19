@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:proctor_rule/screens/institute_table.dart';
+import 'package:proctor_rule/screens/Tables/Institute/institute_table.dart';
 
 class AddInstitute extends StatefulWidget {
   const AddInstitute({Key? key}) : super(key: key);
