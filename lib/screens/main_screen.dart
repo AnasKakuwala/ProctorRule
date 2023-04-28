@@ -29,28 +29,28 @@ class _MainScreenState extends State<MainScreen> {
         title: const Text("ProctorRule",style: TextStyle(color: Colors.white),),
       ),
       body: const MainBody(),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.shifting,
-        selectedItemColor: Colors.black,
-        onTap: (index) {
-          setState(() {
-            myIndex = index;
-          });
-        },
-        currentIndex: myIndex,
-        items: const [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-              backgroundColor: Colors.grey
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.schedule),
-              label: 'Schedule Exam',
-              backgroundColor: Colors.grey
-          ),
-        ],
-      ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   type: BottomNavigationBarType.shifting,
+      //   selectedItemColor: Colors.black,
+      //   onTap: (index) {
+      //     setState(() {
+      //       myIndex = index;
+      //     });
+      //   },
+      //   currentIndex: myIndex,
+      //   items: const [
+      //     BottomNavigationBarItem(
+      //         icon: Icon(Icons.home),
+      //         label: 'Home',
+      //         backgroundColor: Colors.grey
+      //     ),
+      //     BottomNavigationBarItem(
+      //         icon: Icon(Icons.schedule),
+      //         label: 'Schedule Exam',
+      //         backgroundColor: Colors.grey
+      //     ),
+      //   ],
+      // ),
     );
   }
 }

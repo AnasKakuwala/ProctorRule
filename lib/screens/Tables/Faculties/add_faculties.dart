@@ -31,6 +31,11 @@ class _AddFacultiesState extends State<AddFaculties> {
   final TextEditingController F_SUBJECTController = TextEditingController();
   final FocusNode focusNode=FocusNode();
 
+  late String fname;
+  
+  void print_a(List<int> a){
+    print(a);
+  }
 
   Future<int> getNumberOfDocuments() async {
     String mid = "";
@@ -73,12 +78,12 @@ class _AddFacultiesState extends State<AddFaculties> {
 
   String idGenerator(int n,String sname){
     String temp;
-    String mainname = sname.replaceAll(" ", "_");
+    // String mainname = sname.replaceAll(" ", "_");
     if(n > 9){
-      temp = '${n}_$mainname';
+      temp = '${n}_$sname';
     }
     else{
-      temp = '0${n}_$mainname';
+      temp = '0${n}_$sname';
     }
     print(temp);
     return temp;
@@ -242,4 +247,3 @@ class _AddFacultiesState extends State<AddFaculties> {
     );
   }
 }
-

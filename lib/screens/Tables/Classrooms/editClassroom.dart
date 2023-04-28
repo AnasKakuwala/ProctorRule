@@ -1,41 +1,31 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class EditInstitute extends StatefulWidget {
-
-  const EditInstitute({super.key, required this.id, required this.sName, required this.fName});
-
-  final String id;
-  final String fName;
-  final String sName;
-
+class EditClassroom extends StatefulWidget {
+  const EditClassroom({Key? key,required this.cId,required this.cCapacity,required this.cLocation}) : super(key: key);
+  final String cId;
+  final String cCapacity;
+  final String cLocation;
   @override
-  State<EditInstitute> createState() => _EditInstituteState();
+  State<EditClassroom> createState() => _EditClassroomState();
 }
 
-class _EditInstituteState extends State<EditInstitute> {
+class _EditClassroomState extends State<EditClassroom> {
+
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  final TextEditingController I_IDController = TextEditingController();
+  final TextEditingController C_IDController = TextEditingController();
 
-  final TextEditingController I_SH_NAMEController = TextEditingController();
+  final TextEditingController classCapacityController = TextEditingController();
 
-  final TextEditingController I_FL_NAMEController = TextEditingController();
+  final TextEditingController classLocationController = TextEditingController();
 
   final FocusNode focusNode=FocusNode();
 
   Future<void> updateDocument(String documentId, Map<String, dynamic> dataToUpdate) async {
     try {
-      await FirebaseFirestore.instance.collection('Institute').doc(documentId).update(dataToUpdate);
-      // Fluttertoast.showToast(
-      //   msg: "Document updated successfully!",
-      //   toastLength: Toast.LENGTH_LONG,
-      //   gravity: ToastGravity.CENTER,
-      //   backgroundColor: Colors.amber,
-      //   textColor: Colors.white,
-      //   fontSize: 16.0,
-      // );
+      await FirebaseFirestore.instance.collection('Classrooms').doc(documentId).update(dataToUpdate);
     } catch (e) {
       Fluttertoast.showToast(
         msg: 'Error updating document: $e',
@@ -47,25 +37,23 @@ class _EditInstituteState extends State<EditInstitute> {
       );
     }
   }
-
   @override
   Widget build(BuildContext context) {
-
-    I_IDController.text=widget.id;
-    I_SH_NAMEController.text=widget.sName;
-    I_FL_NAMEController.text=widget.fName;
+    C_IDController.text=widget.cId;
+    classCapacityController.text=widget.cCapacity;
+    classLocationController.text=widget.cLocation;
 
     return Scaffold(appBar: AppBar(
       backgroundColor: Colors.grey[700],
-      title: const Text("Edit Institute"),
+      title: const Text("Edit Classroom"),
     ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            getMyField(read: true,hintText: 'Institute ID',controller: I_IDController,focusNode: focusNode,textInputType: TextInputType.none),
-            getMyField(read: false,hintText: 'Institute Short Name',controller: I_SH_NAMEController),
-            getMyField(read: false,hintText: 'Institute Full Name',controller: I_FL_NAMEController),
+            getMyField(read: true,hintText: 'Classroom ID',controller: C_IDController,focusNode: focusNode,textInputType: TextInputType.none),
+            getMyField(read: false,hintText: 'Classroom Capacity',controller: classCapacityController,textInputType: TextInputType.number),
+            getMyField(read: false,hintText: 'Classroom Location',controller: classLocationController),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -73,10 +61,11 @@ class _EditInstituteState extends State<EditInstitute> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.grey[700]),
                   onPressed: () {
-                    String sh = I_SH_NAMEController.text;
-                    String fl = I_FL_NAMEController.text;
-                    Map<String,dynamic> dataToUpdate = {'I_SH_NAME' : sh,'I_FL_NAME': fl};
-                    updateDocument(widget.id, dataToUpdate);
+                    String cid = C_IDController.text;
+                    String ccap = classCapacityController.text;
+                    String cloc = classLocationController.text;
+                    Map<String,dynamic> dataToUpdate = {'CID' : cid,'classCapacity': ccap,'classLocation': cloc};
+                    updateDocument(widget.cId, dataToUpdate);
                     Fluttertoast.showToast(
                       msg: "Data Updated Successfully!",
                       toastLength: Toast.LENGTH_LONG,
@@ -86,16 +75,16 @@ class _EditInstituteState extends State<EditInstitute> {
                       fontSize: 16.0,
                     );
                     Navigator.of(context).pop();
-                },
-                  child: const Text('Update Institute'),
+                  },
+                  child: const Text('Update Classroom'),
                 ),
                 ElevatedButton(
                   onPressed: (){
-                  I_IDController.text="";
-                  I_SH_NAMEController.text="";
-                  I_FL_NAMEController.text="";
-                  focusNode.requestFocus();
-                },
+                    C_IDController.text="";
+                    classCapacityController.text="";
+                    classLocationController.text="";
+                    focusNode.requestFocus();
+                  },
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.grey[700]),
                   child: const Text('Reset'),
                 ),
@@ -106,7 +95,6 @@ class _EditInstituteState extends State<EditInstitute> {
       ),
     );
   }
-
   Widget getMyField({required bool read,required String hintText,TextInputType textInputType=TextInputType.name,required TextEditingController controller,FocusNode? focusNode}){
     return Padding(
       padding: const EdgeInsets.all(10.0),
@@ -119,7 +107,7 @@ class _EditInstituteState extends State<EditInstitute> {
           hintText: 'Enter $hintText',
           labelText: hintText,
           border: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(5))
+              borderRadius: BorderRadius.all(Radius.circular(5))
           ),
         ),
       ),

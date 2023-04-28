@@ -83,7 +83,7 @@ class _MseWidState extends State<MseWid> {
                 child: DropdownButton(
                   icon: Icon(Icons.arrow_drop_down_circle_rounded,size: 30,),
                   isExpanded: true,
-                  hint: Text("Select institute",style: TextStyle(fontSize: 20.0),),
+                  hint: Text("Select Institute",style: TextStyle(fontSize: 20.0),),
                   value: setValue,
                   onChanged:(newValue){
                     setState(() {
@@ -203,11 +203,18 @@ class _MseWidState extends State<MseWid> {
           SizedBox(height: 150,),
           buildProgress(),
           SizedBox(height: 50,),
-          ElevatedButton(
-            onPressed: () => {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ClassroomsScreen()))
-            },
-            child: Text("Select classrooms "),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10,),
+            child: SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.grey[700]),
+                onPressed: () => {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => ClassroomsScreen()))
+                },
+                child: Text("Select Classrooms ",style: TextStyle(color: Colors.white,fontSize: 18)),
+              ),
+            ),
           ),
         ],
       ),
