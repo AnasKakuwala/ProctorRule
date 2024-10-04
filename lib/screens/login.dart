@@ -120,7 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
                          margin: EdgeInsets.only(top: constraints.maxHeight * 0.05),
                          child: ElevatedButton(
                            onPressed: () async {
-                             User? user = await loginUsingEmailPassword(email: emailController.text, password: passwordController.text, context: context);
+                             User? user = await loginUsingEmailPassword(email: emailController.text.trim(), password: passwordController.text, context: context);
                              // print(user);
                              if(user != null){
                                Navigator.push(context,MaterialPageRoute(builder: (context) => const MainScreen()));
